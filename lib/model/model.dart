@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:intl/intl.dart';
 
 final oCcy = new NumberFormat("#,##0", "en_US");
@@ -10,47 +12,84 @@ class WealthCalculator {
   double salary;
   double investmentReturn;
   int numberOfYears;
+  int annualRaise;
+  double _annualRaiseMultiplier = 1.0;
 
-  WealthCalculator(this.salary, this.investmentReturn, this.numberOfYears);
+  static const double PERCENT_OF_INCOME_SAVED = .1;
+  static const double PERCENT_OF_INCOME_INVESTED = .1;
+  static const double PERCENT_OF_INCOME_GIVEN_TO_CHARITY = .1;
 
-  String getSavingsTotals() {
-    double result = 0;
-    for (var i = 0; i< numberOfYears; i++) {
-      result += (salary * .1);
-    }
-    return "\$" + oCcy.format(result).toString();
+  WealthCalculator(this.salary, this.investmentReturn, this.numberOfYears, this.annualRaise) {
+    this._annualRaiseMultiplier = 1 + (annualRaise / 100);
   }
 
-  String getInvestmentTotals() {
-    double result = 0;
-    double compound = 0;
-    for (var i = 0; i< numberOfYears; i++) {
-      var thisYearsInvestmentGain = (salary * .10) * getInvestmentRate();
-      var thisYearInvestmentPrinciple = (salary * .10);
-      result += compound + thisYearsInvestmentGain + thisYearInvestmentPrinciple;
-      compound = result * getInvestmentRate();
-    }
-    return "\$" + oCcy.format(result).toString();
-  }
-
-  String getCharityTotals() {
+  double calculateSavingsTotals() {
     double result = 0;
     for (var i = 0; i< numberOfYears; i++) {
-      result += salary * .1;
+      result += calculateSalaryForYear(i) * PERCENT_OF_INCOME_SAVED;
     }
-    return "\$" + oCcy.format(result).toString();
+    return result;
   }
 
-  double getInvestmentRate() {
+  calculateSalaryForYear(int year) {
+    double result = salary;
+    for (var i = 0; i < year; i++) {
+      result *= _annualRaiseMultiplier;
+    }
+    return result;
+  }
+
+  double calculateInvestmentTotals() {
+    double totalInvestments = 0;
+    for (var i = 0; i< numberOfYears; i++) {
+      totalInvestments += calculateSalaryForYear(i) * PERCENT_OF_INCOME_INVESTED;
+      totalInvestments += totalInvestments * calculateInvestmentRate();
+    }
+    return totalInvestments;
+  }
+
+  double calculateCharityTotals() {
+    double result = 0;
+    for (var i = 0; i< numberOfYears; i++) {
+      result += calculateSalaryForYear(i) * .1;
+    }
+    return result;
+  }
+
+  double calculateInvestmentRate() {
     if (this.investmentReturn > 1) return this.investmentReturn/ 100;
     return this.investmentReturn;
   }
 
-  getLivingTotals() {
+  double calculateLivingTotals() {
     double result = 0;
     for (var i = 0; i< numberOfYears; i++) {
       result += salary * .7;
     }
+    return result;
+  }
+
+  String getInvestments() {
+    return formatCurrency(calculateInvestmentTotals());
+  }
+
+  String getSavings() {
+    return formatCurrency(calculateSavingsTotals());
+  }
+
+  String getCharity() {
+    return formatCurrency(calculateCharityTotals());
+  }
+
+  String getLiving() {
+    return formatCurrency(calculateLivingTotals());
+  }
+
+  String getAccumulatedWealth() {
+    return formatCurrency(calculateInvestmentTotals()+calculateSavingsTotals());
+  }
+
+  static String formatCurrency(double result) {
     return "\$" + oCcy.format(result).toString();
   }
 }

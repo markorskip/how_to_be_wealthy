@@ -2,6 +2,7 @@
 import 'package:first_flutter_app/model/model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class WealthCalculatorPage extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
   double _currentSalary = 50000;
 
   getWC() {
-    return new WealthCalculator(_currentSalary, this._currentInvestmentReturn, this._currentNumberOfYears.toInt());
+    return new WealthCalculator(_currentSalary, this._currentInvestmentReturn, this._currentNumberOfYears.toInt(), 3);
   }
 
   // Create a text controller and use it to retrieve the current value
@@ -64,7 +65,7 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
     // Build a Form widget using the _formKey created above.
     return ListView(
     children: [
-      Text('Current Salary: \$' + this._currentSalary.toInt().toString()),
+      Text('Income: \$' + this._currentSalary.toInt().toString()),
       Slider(
         value: _currentSalary,
         min: 0,
@@ -77,7 +78,7 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
           });
         },
       ),
-          Text('Investment Rate of Return: ' + this._currentInvestmentReturn.toInt().toString() + "%"),
+          Text('Investment ROI: ' + this._currentInvestmentReturn.toInt().toString() + "%"),
           Slider(
             value: _currentInvestmentReturn,
             min: 0,
@@ -121,14 +122,14 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
       RichText(
         text: TextSpan(text: "After " + this._currentNumberOfYears.round().toString() + " years you would have ",
             style: TextStyle(color: Colors.black))),
-      DisplayTotal("in your investments", getWC().getInvestmentTotals()),
+      DisplayTotal("in your investments", getWC().getInvestments()),
       //divider,
-      DisplayTotal("in your savings", getWC().getSavingsTotals()),
+      DisplayTotal("in your savings", getWC().getSavings()),
       //divider,
-      DisplayTotal("given to charity", getWC().getCharityTotals()),
+      DisplayTotal("given to charity", getWC().getCharity()),
       //divider,
-      DisplayTotal("dedicated to living expenses", getWC().getLivingTotals()),
-      //divider
+      DisplayTotal("dedicated to living expenses", getWC().getLiving()),
+      divider
     ]);
   }
 }
@@ -151,6 +152,4 @@ class DisplayTotal extends StatelessWidget {
 
     ));
   }
-
-
 }

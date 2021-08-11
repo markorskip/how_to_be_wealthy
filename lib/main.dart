@@ -6,8 +6,6 @@ import 'model/model.dart';
 
 void main() => runApp(const MyApp());
 
-WealthCalculator wealthCalculator = new WealthCalculator(242000, .08, 1);
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
