@@ -40,14 +40,16 @@ Install flutter and dart - set up xcode and simulator
 Get app running in simulator
 Create v1
 Debug running in iOs
+Add feature for annual raise
 
 IN PROGRESS:
 
 
 Ready for Development:
-Add feature for annual raise
+
+verify model with online calculator (find online calculator)
 Clean up user interface - make prettier
-Add unit tests
+Add more unit tests
 
 BACKLOG:
 

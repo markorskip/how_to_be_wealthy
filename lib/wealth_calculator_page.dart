@@ -23,9 +23,10 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
   double _currentInvestmentReturn = 8;
   double _currentNumberOfYears = 10;
   double _currentSalary = 50000;
+  double _annualRaise = 3;
 
   getWC() {
-    return new WealthCalculator(_currentSalary, this._currentInvestmentReturn, this._currentNumberOfYears.toInt(), 3);
+    return new WealthCalculator(_currentSalary, this._currentInvestmentReturn, this._currentNumberOfYears.toInt(), _annualRaise.toInt());
   }
 
   // Create a text controller and use it to retrieve the current value
@@ -70,11 +71,24 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
         value: _currentSalary,
         min: 0,
         max: 500000,
-        divisions: 1000,
+        divisions: 500,
         label: _currentSalary.round().toString(),
         onChanged: (double value) {
           setState(() {
             _currentSalary = value;
+          });
+        },
+      ),
+      Text('Annual Raise: ' + this._annualRaise.toInt().toString() + '%'),
+      Slider(
+        value: _annualRaise,
+        min: 0,
+        max: 50,
+        divisions: 50,
+        label: _annualRaise.round().toString(),
+        onChanged: (double value) {
+          setState(() {
+            _annualRaise = value;
           });
         },
       ),
@@ -103,21 +117,6 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
                 _currentNumberOfYears = value;
               });
             },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Text('Submit'),
-            ),
           ),
       RichText(
         text: TextSpan(text: "After " + this._currentNumberOfYears.round().toString() + " years you would have ",
