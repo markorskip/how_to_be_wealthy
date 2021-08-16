@@ -48,7 +48,7 @@ IN PROGRESS:
 Ready for Development:
 
 verify model with online calculator (find online calculator)
-Clean up user interface - make prettier
+UI: Pick a more readable font
 Add more unit tests
 
 BACKLOG:

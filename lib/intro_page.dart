@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 class IntroPage extends StatelessWidget {
   const IntroPage();
 
-  final String introText= "By following a simple financial discipline, anyone can achieve wealth over time.  Review the formula and use the calculator to see"
-  + " how long it would take to achieve your financial wealth goals.";
+  final String introText= "Anyone can achieve wealth over time by following a very simple financial formula."
+      "  Use the calculator to see"
+  + " how long it would take to achieve your financial wealth goals using this wealth formula.";
 
   final String formulaExplanation = 'Of your income, 10 percent invest, '
       '10 percent save,'
       'and 10 percent give to the charity or church of your choice.'
-      ' This simple financial discipline will produce great wealth over time'
-      'regardless of your starting wealth or income. Use the calculator on'
-      'the next screen to see how much wealth you will accumulate over time'
+      ' This simple financial discipline will produce great wealth over time '
+      'regardless of your starting wealth or income. Use the calculator on '
+      'the next screen to see how much wealth you will accumulate over time '
       'using this formula.';
 
   @override
@@ -29,7 +30,7 @@ class IntroPage extends StatelessWidget {
         ),
         Row(children: [
           Icon(Icons.attach_money),
-          Text('10% GIVE', textAlign: TextAlign.center)]
+          Text('10% GIVE tO CHARITY', textAlign: TextAlign.center)]
         ),
         Row(children: [
           Icon(Icons.attach_money),
