@@ -1,5 +1,7 @@
-import 'package:test/test.dart';
-import 'package:first_flutter_app/model/model.dart';
+
+
+import 'package:amen_app/model/model.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Model', () {

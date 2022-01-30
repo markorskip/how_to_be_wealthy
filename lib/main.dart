@@ -1,4 +1,4 @@
-import 'package:first_flutter_app/wealth_calculator_page.dart';
+import 'wealth_calculator_page.dart';
 import 'package:flutter/material.dart';
 import 'intro_page.dart';
 import 'model/model.dart';

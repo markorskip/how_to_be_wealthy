@@ -2,7 +2,7 @@
     package="com.efficientsoftware.first_flutter_app">
    <application
         android:label="first_flutter_app"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

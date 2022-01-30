@@ -1,8 +1,10 @@
 // Create a Form widget.
-import 'package:first_flutter_app/model/model.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import 'model/model.dart';
 
 class WealthCalculatorPage extends StatefulWidget {
   @override
