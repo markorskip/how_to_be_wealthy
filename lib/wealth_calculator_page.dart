@@ -1,12 +1,10 @@
 // Create a Form widget.
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import 'model/model.dart';
 
 class WealthCalculatorPage extends StatefulWidget {
+
   @override
   WealthCalculatorPageState createState() {
     return WealthCalculatorPageState();
@@ -31,8 +29,6 @@ class WealthCalculatorPageState extends State<WealthCalculatorPage> {
     return new WealthCalculator(_currentSalary, this._currentInvestmentReturn, this._currentNumberOfYears.toInt(), _annualRaise.toInt());
   }
 
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
   final myController = TextEditingController(text: '100000');
 
   final divider = const Divider(

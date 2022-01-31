@@ -31,36 +31,13 @@ class MyHomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('How to be Wealthy'),
-          bottom: const TabBar(
-            isScrollable: true,
-            tabs: [
-              Tab(text: 'Introduction'),
-              Tab(text: 'Calculator'),
-            ],
-          ),
         ),
-        body: const SafeArea(
-          bottom: false,
-          minimum: EdgeInsets.all(8.0),
-          child: TabBarView(
-            children: [
-              IntroPage(),
-              CalculatorPage()
-            ],
-          ),
-        ),
+        body: Container(
+          margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+          child: WealthCalculatorPage(),
+        )
       ),
     );
-  }
-}
-
-class CalculatorPage extends StatelessWidget {
-  const CalculatorPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: WealthCalculatorPage());
   }
 }
 
