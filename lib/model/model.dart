@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:intl/intl.dart';
 
 final oCcy = new NumberFormat("#,##0", "en_US");
